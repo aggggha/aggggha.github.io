@@ -1,0 +1,21 @@
+{
+    "name": "Scoreboard",
+    "gcm_sender_id": "731907884730",
+    "short_name": "Scoreboard",
+    "description": "Aplikasi bola berbasis PWA",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#e53935",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },{
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+.topnav {
+    position: relative;
+    top: -1px;
+}
+.progress {
+    top: -8px;
+}
+#card-carousel.carousel {
+    min-height: 525px !important;
+}
+#schedule-container.carousel {
+    max-height: 295px !important;
+}
+#schedule-container.carousel.carousel-slider
+    > .carousel-item
+    > .row
+    > .col
+    > .card
+    > .card-content
+    .schedule-card {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-grid;
+}
+#schedule-container.carousel.carousel-slider
+    > .carousel-item
+    > .row
+    > .col
+    > .card
+    > .card-content {
+    min-height: 201px;
+}
+td,
+th {
+    padding: 5px 5px;
+}
+.carousel.carousel-slider .carousel-item h2 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.carousel .indicators .indicator-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: auto 2px;
+    height: 4px;
+    width: 4px;
+}
+.carousel .indicators .indicator-item.active {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.title-1 > .schedule-datetime {
+    font-size: 1.15rem;
+}
+.card-content > .schedule-card {
+    font-size: 1.25rem;
+    padding: 5px;
+    background: #efefef;
+    display: inline-block;
+}
+
+/* ----------- */
+#body-content.animate {
+    -webkit-animation-name: slideRight; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.3s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 0.83);
+    animation-name: slideRight;
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0, 0, 0, 0.83);
+}
+@-webkit-keyframes slideRight {
+    from {
+        -webkit-transform: translateX(10%);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translateX(0%);
+        opacity: 1;
+    }
+}
+@keyframes slideRight {
+    from {
+        transform: translateX(10%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}

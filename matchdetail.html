@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Scoreboard</title>
+    <meta name="description" content="Scoreboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.png" type="image/png">
+    <meta name="theme-color" content="#e53935" />
+</head>
+
+<body>
+    <!-- Navigasi -->
+    <div class="navbar-fixed">
+        <nav class="red darken-1" role="navigation">
+            <div class="nav-wrapper container">
+                <a onclick="goBack()" class="btn btn-floating red darken-1 btn-large z-depth-0 waves-effect waves-light hide-on-med-and-down"><i class="material-icons">arrow_back</i></a>
+                <a href="/" class="brand-logo truncate center id=" logo-container">Scoreboard</a>
+                <a href="#home" onclick="goBack()" class="sidenav-trigger" data-target="nav-mobile"><i class="material-icons ">arrow_back</i></a>
+            </div>
+            <div class="progress" id="loadingProgress" style="background: #ffcdd2;">
+                <div class="indeterminate" style="background: #e53935;"></div>
+            </div>
+        </nav>
+    </div>
+    <!-- Akhir Navigasi -->
+
+    <h5 class="non-materialize center">Match detail</h5>
+    <div class="container center" style="padding: 0 15px">
+        <div class="card-action centered">
+            <a onclick="goRefresh()" class="waves-effect red darken-1 waves-light btn btn-refresh"><i class="material-icons center">refresh</i></a>
+            <a class="waves-effect waves-light btn red darken-1" id="save"><i class="material-icons left icon-status">save</i><span class="save-status">Save match</span></a>
+        </div>
+        <div id="card-detail"></div>
+    </div>
+
+
+    <script src="node_modules/idb/lib/idb.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/detail.js"></script>
+
+
+
+    <script>
+        // REGISTER SERVICE WORKER
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker
+                    .register("/service-worker.js")
+                    .then(function () {
+                        console.log("Pendaftaran ServiceWorker berhasil");
+                    })
+                    .catch(function () {
+                        console.log("Pendaftaran ServiceWorker gagal");
+                    });
+            });
+        } else {
+            console.log("ServiceWorker belum didukung browser ini.");
+        }
+
+        // Request
+        document.addEventListener("DOMContentLoaded", function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var isFromSaved = urlParams.get("saved");
+
+            var btnSave = document.getElementsByClassName("card-action")[0];
+
+            if (isFromSaved) {
+                document.getElementsByClassName("btn-refresh")[0].style.display = "none";
+                document.getElementsByClassName("icon-status")[0].innerHTML = "delete";
+                document.getElementsByClassName("save-status")[0].innerHTML = "Remove from your 'Saved Match' list";
+
+                // Ambil dari indexedDB
+                getSavedMatchDetailById();
+
+                btnSave.onclick = function () {
+                    // console.log(item);
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var idParam = urlParams.get("id");
+                    deleteData(Number(idParam));
+                    M.toast({html: 'Data dihapus. Mengalihkan...'});
+                    document.getElementsByClassName("save-status")[0].innerHTML = "Removed";
+                    window.location.href="/index.html";
+                }
+            } else {
+                var item = getMatchDetailById();
+
+                btnSave.onclick = function () {
+                    // console.log(item);
+                    item.then(function (data) {
+                        createData(data);
+                    });
+                };
+            }
+        });
+
+        // NOTIFICATION API
+        // Periksa browser support
+        if ("Notification" in window) {
+            requestPermission();
+        } else {
+            console.log("Notifikasi tidak didukung browser ini");
+        }
+
+        // Meminta ijin menggunakan Notification API
+        function requestPermission() {
+            Notification.requestPermission().then(function (result) {
+                if (result === "denied") {
+                    console.log("Fitur notifikasi tidak diijinkan");
+                    return;
+                } else if (result === "default") {
+                    console.error("Pengguna menutup kotak dialog permintaan ijin.");
+                    return;
+                }
+
+                console.log("Notifikasi diijinkan.");
+            });
+        }
+
+        // Go Back and refresh function
+        function goBack() {
+            window.history.back();
+        }
+
+        function goRefresh() {
+            window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+            console.log("Refreshing...");
+        }
+
+    </script>
+</body>
+
+</html>
