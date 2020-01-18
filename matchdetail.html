@@ -35,6 +35,7 @@
         <div class="card-action centered">
             <a onclick="goRefresh()" class="waves-effect red darken-1 waves-light btn btn-refresh"><i class="material-icons center">refresh</i></a>
             <a class="waves-effect waves-light btn red darken-1" id="save"><i class="material-icons left icon-status">save</i><span class="save-status">Save match</span></a>
+            <span class="btn red lighten-4 black-text added-btn hide"><i class="material-icons left icon-status">save</i> Saved</span>
         </div>
         <div id="card-detail"></div>
     </div>
@@ -71,7 +72,7 @@
             var urlParams = new URLSearchParams(window.location.search);
             var isFromSaved = urlParams.get("saved");
 
-            var btnSave = document.getElementsByClassName("card-action")[0];
+            var btnSave = document.getElementById("save");
 
             if (isFromSaved) {
                 document.getElementsByClassName("btn-refresh")[0].style.display = "none";
@@ -88,7 +89,7 @@
                     deleteData(Number(idParam));
                     M.toast({html: 'Data dihapus. Mengalihkan...'});
                     document.getElementsByClassName("save-status")[0].innerHTML = "Removed";
-                    window.location.href="/index.html";
+                    window.location.href="/index.html#saved";
                 }
             } else {
                 var item = getMatchDetailById();

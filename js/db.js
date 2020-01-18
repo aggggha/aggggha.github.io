@@ -2,6 +2,17 @@ var dbPromised = idb.open("football-scoreboard", 1, function (upgradeDb) {
     var matchesObjectStore = upgradeDb.createObjectStore("matches", { keyPath: "id" });
 });
 
+function toastDismissWithCondition() {
+    M.Toast.dismissAll();
+    document.getElementById("save").classList.remove("hide");
+    document.getElementsByClassName("added-btn")[0].classList.add("hide");
+    M.toast({html: `Dibatalkan<button class="btn-flat toast-action" onclick="toastDismiss()">Dismiss</button>`});
+}
+
+function toastDismiss() {
+    M.Toast.dismissAll();
+}
+
 function createData(data) {
     var collectedData = {
         id: data.match.id,
@@ -58,11 +69,18 @@ function saveForLater(data) {
             return tx.complete;
         })
         .then(function () {
-            M.toast({html: 'Data ditambahkan'});
-            document.getElementsByClassName("save-status")[0].innerHTML = "Saved";
+            var urlParams = new URLSearchParams(window.location.search);
+            var idParam = urlParams.get("id");
+            //console.log(idParam);
+            M.toast({
+                html: `<span>Data ditambahkan.</span><button class="btn-flat toast-action" onclick="deleteData(${idParam}); toastDismissWithCondition()">Undo</button><button class="btn-flat toast-action" onclick="toastDismiss()">Dismiss</button>`,
+                displayLength: Infinity
+            });
+            // document.getElementsByClassName("save-status")[0].innerHTML = "Saved";
+            document.getElementById("save").classList.add("hide");
+            document.getElementsByClassName("added-btn")[0].classList.remove("hide");
             document.getElementsByClassName("save-status")[0].removeAttribute('id');
             console.log("Artikel disimpan.");
-
         });
 }
 

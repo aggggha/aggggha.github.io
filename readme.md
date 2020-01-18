@@ -1,3 +1,11 @@
-### About this repository
-`Ditulis ulang (oleh saya) untuk keperluan error checking.`
-Membuat Aplikasi News Reader dari [Dicoding - Kelas Membangun Progressive Web Apps](https://www.dicoding.com/academies/74/), kamu juga bisa menemukannya di repositori [Dicoding](https://github.com/dicodingacademy) dari tautan berikut: [https://github.com/dicodingacademy/a74-mpwa-labs/](https://github.com/dicodingacademy/a74-mpwa-labs/)
+# Scoreboard PWA
+This Progressive Web App was made for [Dicoding's Building Progressive Web Apps](https://www.dicoding.com/academies/74) class.
+
+## Clone this repo
+Clone this repository using **Clone or download** button
+
+## Contains
+[Materialize css](https://materializecss.com/)
+
+## Author
+[Agha Pradipta](https://twitter.com/aggggha)

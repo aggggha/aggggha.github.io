@@ -179,7 +179,7 @@ function getSavedMatch() {
         // console.log(data);
         // console.log(matches.length);
         if(matches.length == 0) {
-            document.getElementById("body-content").innerHTML = "<h5 class='center'>No data</h5>";
+            document.getElementById("body-content").innerHTML = "<h5 class='center'>No data in Saved Match</h5>";
         } else {
             dataSavedMatches(matches);
         }

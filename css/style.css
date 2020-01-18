@@ -58,6 +58,9 @@ th {
     background: #efefef;
     display: inline-block;
 }
+.btn.hide{
+    display: none;
+}
 
 /* ----------- */
 #body-content.animate {
