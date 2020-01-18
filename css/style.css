@@ -3,7 +3,7 @@
     top: -1px;
 }
 .progress {
-    top: -8px;
+    margin: unset;
 }
 #card-carousel.carousel {
     min-height: 525px !important;
@@ -60,6 +60,23 @@ th {
 }
 .btn.hide{
     display: none;
+}
+.statusbar {
+    background: #000000;
+    width: 100%;
+    line-height: 2;
+    text-align: center;
+    height: 29px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 20px;
+}
+nav.red[role="navigation"] {
+    height: auto !important;
+}
+.statusbar-show {
+    margin-top: 50px;
 }
 
 /* ----------- */

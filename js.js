@@ -6,6 +6,17 @@ if (!('serviceWorker' in navigator)) {
     requestPermission();
 }
 
+window.addEventListener('online', function (){
+    document.getElementsByClassName("statusbar")[0].classList.add("hide");
+    document.getElementById("body-content").classList.remove("statusbar-show");
+}, false);
+
+window.addEventListener('offline', function (){
+    console.log("You're offline.");
+    document.getElementsByClassName("statusbar")[0].classList.remove("hide");
+    document.getElementById("body-content").classList.add("statusbar-show");
+}, false);
+
 // Register ServiceWorker
 function registerServiceWorker() {
     return navigator.serviceWorker.register("service-worker.js")
