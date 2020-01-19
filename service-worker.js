@@ -6,11 +6,17 @@ if (workbox) {
     console.log("Workbox gagal dimuat");
 }
 
+// Cache HTML
 workbox.precaching.precacheAndRoute([
+    { url: '/', revision: '1' },
     { url: '/index.html', revision: '1' },
     { url: '/nav.html', revision: '1' },
+    { url: '/pages/home.html', revision: '1' },
+    { url: '/pages/match.html', revision: '1' },
+    { url: '/pages/saved.html', revision: '1' },
     { url: '/css/materialize.min.css', revision: '1' },
     { url: '/js/materialize.min.js', revision: '1' },
+    { url: '/matchdetail.html', revision: '1' },
     { url: '/js.js', revision: '1' },
     { url: '/js/api.js', revision: '1' },
     { url: '/js/idb.js', revision: '1' },
@@ -25,74 +31,58 @@ workbox.routing.registerRoute(
     })
 );
 
-// Previous code - saved for good
-/* const CACHE_NAME = "scoreboard";
-var urlsToCache = [
-    "/",
-    "/nav.html",
-    "/index.html",
-    "/manifest.json",
-    "/pages/home.html",
-    "/pages/about.html",
-    "/pages/contact.html",
-    "/pages/match.html",
-    "/pages/saved.html",
-    "/css/materialize.min.css",
-    "/css/style.css",
-    "/js.js",
-    "/node_modules/idb/lib/idb.js",
-    "/js/api.js",
-    "/js/db.js",
-    "/js/detail.js",
-    "/js/materialize.min.js",
-    "/js/nav.js",
-    "/icon.png"
-];
+// Bug (?)
+workbox.routing.registerRoute(
+    new RegExp('/matchdetail.html'),
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'halaman',
+    })
+);
 
+// Cache api-football
+workbox.routing.registerRoute(
+    new RegExp('https://api.football-data.org/v2/'),
+    workbox.strategies.staleWhileRevalidate()
+)
 
-self.addEventListener("install", function (event) {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(function (cache) {
-            return cache.addAll(urlsToCache);
-        })
-    );
-});
+// Simpan gambar 30 hari
+workbox.routing.registerRoute(
+    /\.(?:png|gif|jpg|jpeg|svg)$/,
+    workbox.strategies.cacheFirst({
+        cacheName: 'cache-gambar',
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 80,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+            }),
+        ],
+    }),
+);
 
-self.addEventListener("fetch", function (event) {
-    var base_url = "https://api.football-data.org/v2/";
+// Cache font 30 hari
+workbox.routing.registerRoute(
+    /^https:\/\/fonts\.gstatic\.com/,
+    workbox.strategies.cacheFirst({
+        cacheName: 'google-fonts-webfonts',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200],
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+                maxEntries: 5,
+            }),
+        ],
+    })
+);
 
-    if (event.request.url.indexOf(base_url) > -1) {
-        event.respondWith(
-            caches.open(CACHE_NAME).then(function (cache) {
-                return fetch(event.request).then(function (response) {
-                    cache.put(event.request.url, response.clone());
-                    return response;
-                })
-            })
-        );
-    } else {
-        event.respondWith(
-            caches.match(event.request, { ignoreSearch: true }).then(function (response) {
-                return response || fetch (event.request);
-            })
-        )
-    }
-});
-
-self.addEventListener("activate", function (event) {
-    event.waitUntil(
-        caches.keys().then(function (cacheNames) {
-            return Promise.all(
-                cacheNames.map(function (cacheName) {
-                    if (cacheName != CACHE_NAME) {
-                        console.log("ServiceWorker: cache " + cacheName + " dihapus");
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
-    );
-}); */
+// Cache js dan css
+workbox.routing.registerRoute(
+    /\.(?:js|css)$/,
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'static-resources',
+    })
+);
 
 self.addEventListener('push', function (event) {
     var body;

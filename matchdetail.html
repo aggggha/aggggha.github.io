@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="icon.png" type="image/png">
     <meta name="theme-color" content="#e53935" />
@@ -44,6 +44,7 @@
     <script src="js/idb.js"></script>
     <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
     <script src="js/materialize.min.js"></script>
+    <script src="js.js"></script>
     <script src="js/db.js"></script>
     <script src="js/api.js"></script>
     <script src="js/detail.js"></script>
@@ -51,22 +52,6 @@
 
 
     <script>
-        // REGISTER SERVICE WORKER
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", function () {
-                navigator.serviceWorker
-                    .register("/service-worker.js")
-                    .then(function () {
-                        console.log("Pendaftaran ServiceWorker berhasil");
-                    })
-                    .catch(function () {
-                        console.log("Pendaftaran ServiceWorker gagal");
-                    });
-            });
-        } else {
-            console.log("ServiceWorker belum didukung browser ini.");
-        }
-
         // Request
         document.addEventListener("DOMContentLoaded", function () {
             var urlParams = new URLSearchParams(window.location.search);
@@ -102,29 +87,6 @@
                 };
             }
         });
-
-        // NOTIFICATION API
-        // Periksa browser support
-        if ("Notification" in window) {
-            requestPermission();
-        } else {
-            console.log("Notifikasi tidak didukung browser ini");
-        }
-
-        // Meminta ijin menggunakan Notification API
-        function requestPermission() {
-            Notification.requestPermission().then(function (result) {
-                if (result === "denied") {
-                    console.log("Fitur notifikasi tidak diijinkan");
-                    return;
-                } else if (result === "default") {
-                    console.error("Pengguna menutup kotak dialog permintaan ijin.");
-                    return;
-                }
-
-                console.log("Notifikasi diijinkan.");
-            });
-        }
 
         // Go Back and refresh function
         function goBack() {
