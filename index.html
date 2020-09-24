@@ -1,49 +1,274 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Scoreboard</title>
-    <meta name="description" content="Scoreboard" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <link rel="stylesheet" href="css/materialize.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="shortcut icon" href="icon.png" type="image/png">
-    <meta name="theme-color" content="#e53935" />
+
+    <title>bekadesain - Partner Kreatif Sejatimu</title>
 </head>
 
 <body>
-    <!-- Navigasi -->
-    <div class="navbar-fixed">
-        <nav class="red darken-1" role="navigation">
-            <div class="statusbar hide">Hmmmm... It seems that you're offline, connect to a network for full functionality.</div>
-            <div class="nav-wrapper container">
-                <a href="#" class="brand-logo truncate" id="logo-container">Scoreboard</a>
-                <a href="#" class="sidenav-trigger" data-target="nav-mobile"><i class="material-icons">menu</i></a>
+    <!-- Navbar begin -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand mr-auto" href="#">
+                <img src="img/logo_beka_black.png" alt="Logo bekadesain" loading="lazy" height="15"
+                    style="margin-top: -9px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#home">Beranda <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#material">Materi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tentang">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hasil-kerja">Portofolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bantuan">Testimoni</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar end -->
 
-                <ul class="topnav right hide-on-med-and-down"></ul>
+    <!-- Content -->
+    <div class="jumbotron jumbotron-fluid first-jumbtrn" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm" style="color: #ffffff;">
+                    <h1>Partner Kreatif Sejatimu</h1>
+                    <p class="lead">
+                        <img src="img/logo_beka_white.png" alt="Logo bekadesain" height="15" style="margin-top: -7px;"
+                            loading="lazy">
+                        hadir dengan misi untuk membatu kamu, para pemilik usaha baik umkm atau individu yang
+                        sekedar coba-coba <i>bikin online shop</i>, buat bikin produk kamu keliatan <i>edgy</i>
+                        banget!</p>
+                </div>
+                <div class="col-12 col-sm">
+                    <div class="card">
+                        <div class="card-body">
+                            <form>
+                                <h3>Pesan Desain Sekarang</h3>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputNama1">Nama lengkap</label>
+                                        <input type="text" class="form-control" id="inputNama1" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail1">Email</label>
+                                        <input type="email" class="form-control" id="inputEmail1" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone1">Nomor telepon</label>
+                                    <input type="text" class="form-control" id="inputPhone1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputSelect1">Jenis materi kreatif</label>
+                                    <select class="form-control" id="exampleInputSelect1" required>
+                                        <option>Pilih jenis materi</option>
+                                        <option>Social Media Content</option>
+                                        <option>Stationary</option>
+                                        <option>Jasa foto produk</option>
+                                        <option>Jasa edit video</option>
+                                        <option>Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleTextarea1">Konsep desain/brief</label>
+                                    <textarea class="form-control" id="exampleTextarea1" rows="3" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFile1">Contoh sketsa</label>
+                                    <input type="file" class="form-control-file" id="exampleFile1">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Pesan desain</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="progress" id="loadingProgress" style="background: #ffcdd2;">
-                <div class="indeterminate" style="background: #e53935;"></div>
-            </div>
-        </nav>
+        </div>
     </div>
-    <ul class="sidenav" id="nav-mobile"></ul>
-    <!-- Akhir Navigasi -->
 
-    <div class="container" id="body-content"></div>
+    <div class="jumbotron jumbotron-fluid bg-white second-jumbtrn" id="material">
+        <div class="container text-center">
+            <h1>Pilih Materi yang Kamu Mau</h1>
+            <p>Lihat ratusan hasil kerja kami, dan temukan inspirasi untuk produk kamu.</p>
 
+            <div class="card-deck">
+                <div class="card">
+                    <img src="https://source.unsplash.com/KWZa42a1kds/800x480" class="img-fluid"
+                        alt="Social Media Materials" loading="lazy">
+                    <div class="card-body">
+                        <h5 class="card-title">Social Media Content</h5>
+                        <a href="#" class="btn btn-link">Pelajari lebih lanjut</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/h5HyyG9ejro/800x480" class="img-fluid"
+                        alt="Stationary Material" loading="lazy">
+                    <div class="card-body">
+                        <h5 class="card-title">Stationary</h5>
+                        <a href="#" class="btn btn-link">Pelajari lebih lanjut</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/bUjiFIn3PLk/800x480" class="img-fluid"
+                        alt="Product Photo Material" loading="lazy">
+                    <div class="card-body">
+                        <h5 class="card-title">Product Photo</h5>
+                        <a href="#" class="btn btn-link">Pelajari lebih lanjut</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/Ov7uQoarS7w/800x480" class="img-fluid" alt="Many more"
+                        loading="lazy">
+                    <div class="card-body">
+                        <h5 class="card-title">Dan masih banyak lagi</h5>
+                        <a href="#" class="btn btn-link">Pelajari lebih lanjut</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="js/idb.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/nav.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/db.js"></script>
-    <script src="js.js"></script>
+    <div class="jumbotron jumbotron-fluid bg-info -jumbtrn" id="tentang">
+        <div class="container text-center text-white">
+            <h1>Tentang bekadesain</h1>
+            <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus iste possimus
+                magni.
+                Porro sit nisi nulla repellendus corrupti veritatis, repellat ea aspernatur ex dolorum repudiandae
+                exercitationem sed facilis sunt similique.</p>
+            <hr class="my-4">
+            <h3>Kelebihan bekadesain</h3> <br>
+            <div class="row">
+                <div class="col col-sm">
+                    <i class="material-icons md-light">schedule</i>
+                    <p>Durasi pengerjaan</p>
+                </div>
+                <div class="col col-sm">
+                    <i class="material-icons md-light">sentiment_very_satisfied</i>
+                    <p>Kuota revisi yang <i>lega</i></p>
+                </div>
+                <div class="col col-sm">
+                    <i class="material-icons md-light">how_to_reg</i>
+                    <p>Dikerjakan oleh desainer profesional</p>
+                </div>
+                <div class="col col-sm">
+                    <i class="material-icons md-light">verified_user</i>
+                    <p>Terpercaya</p>
+                </div>
+                <div class="col col-sm">
+                    <i class="material-icons md-light">timeline</i>
+                    <p>Mengikuti tren</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid bg-warning" style="margin-top: -33px" id="hasil-kerja">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm">
+                    <h1>Hasil Kerja Kami</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur est, quas minus earum
+                        eaque
+                        minima omnis nesciunt hic voluptate qui, delectus eos deleniti? Delectus nisi officiis harum
+                        enim at libero.</p>
+                    <ol>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                        <li>Excepturi nulla numquam iste dolorem rerum.</li>
+                        <li>Laboriosam consequatur vero, molestias tempore sunt odit molestiae laudantium, ea ipsum
+                            quae
+                            adipisci enim iste? Sapiente.</li>
+                    </ol>
+                </div>
+                <div class="col-12 col-sm">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video
+                            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+                            controls></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="jumbotron jumbotron-fluid bg-white" id="bantuan">
+        <div class="container text-center">
+            <h1>Masih Belum Yakin?</h1>
+            <p class="lead">Tenang, tim bekadesain siap membantumu kapanpun dimanapun 24/7.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-primary" href="#" role="button">Kunjungi bantuan</a>
+                <a class="btn btn-primary btn-danger" href="#" role="button">Lihat testimoni klien kami</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid bg-secondary jumbtrn-footer">
+        <div class="container text-white">
+            <div class="row">
+                <div class="col-6 text-center">
+                    <img src="img/logo_beka_white.png" alt="Logo bekadesain" loading="lazy" height="25"
+                        style="margin-top: -9px">
+                </div>
+                <div class="col-6">
+                    <ul>
+                        <li><a href="#">Tentang</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Bantuan</a></li>
+                        <li><a href="#">Syarat dan Ketentuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark" style="margin-top: -33px; padding: 15px">
+        <div class="container text-center text-white">
+            <p>
+                Hak cipta &copy; bekadesain. <br>
+                Sumber materi yang termuat dalam laman ini: <a href="https://www.unsplash.com"
+                    target="_blank">gambar - unsplash</a>, <a href="https://gist.github.com/jsturgis/3b19447b304616f18657"
+                    target="_blank">video</a>, <a href="https://material.io/resources/icons/" target="_blank">icon</a>.
+            </p>
+        </div>
+    </footer>
+    <!-- Content end -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
