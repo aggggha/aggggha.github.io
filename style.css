@@ -26,6 +26,7 @@ background-position: center;
   z-index: 2;
 }
 .jumbotron.first-jumbtrn > .container > .row > .col > .card {
+  position: absolute;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .jumbotron.jumbtrn-footer > .container > .row > .col-6 > ul > li {
@@ -42,14 +43,21 @@ background-position: center;
   .material-icons {
     font-size: 40px !important;
   }
+  .jumbotron.second-jumbtrn {
+    margin-top: 80vh;
+  }
 }
 
 @media (min-width: 421px) and (max-width: 768px) {
-  
+  .jumbotron.second-jumbtrn {
+    margin-top: 25vh;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1023px) {
-  
+  .jumbotron.second-jumbtrn {
+    margin-top: 15vh;
+  }
 }
 
 @media (min-width: 1024px) {
